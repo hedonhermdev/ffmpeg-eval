@@ -12,4 +12,4 @@
 [submodule "user-trampoline"]
 	path = user-trampoline
 	url = git@github.com:mars-research/user-trampoline.git
-    branch = SFI_loader
+    branch = MPK_loader
