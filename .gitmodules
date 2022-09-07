@@ -5,10 +5,6 @@
 	path = sxfi
 	url = git@github.com:/mars-research/sxfi
     branch = sxfi_nacl
-[submodule "llvm-project-13.x"]
-	path = llvm-project-13.x
-	url = https://github.com/mars-research/llvm-project-13.x
-    branch = release/13.x
 [submodule "user-trampoline"]
 	path = user-trampoline
 	url = git@github.com:mars-research/user-trampoline.git
