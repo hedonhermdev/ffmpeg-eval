@@ -14,8 +14,9 @@
       nativeBuildInputs = with pkgs; [
         pkg-config
         clang-tools
-	clang
-	lldb
+        clang
+        lldb
+        ripgrep
         (ffmpeg.override { debugDeveloper = true; })
       ];
   in {
