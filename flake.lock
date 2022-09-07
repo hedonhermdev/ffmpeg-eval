@@ -54,11 +54,11 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1661688263,
-        "narHash": "sha256-Oya2E0tKHAH5ycXqJC93SX5NZEDNuFTiMb4nw7wJOHw=",
+        "lastModified": 1662293054,
+        "narHash": "sha256-U3rGt03kSFJTALPnR3MpNNWOr8zndlaFgwaEDHzW+Qo=",
         "ref": "refs/heads/master",
-        "rev": "f7b82c0dfb3b384e672b7a6ac9751a2239103541",
-        "revCount": 79,
+        "rev": "c4966229d9a5caf42ffc86df1e9b0c3e08d8831b",
+        "revCount": 80,
         "type": "git",
         "url": "ssh://git@github.com/mars-research/mars-std"
       },
@@ -127,11 +127,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1661655464,
-        "narHash": "sha256-by9Hb0mNVdiCR7TBvUHIgDb0QIv3znp8VMGh7Bl35VQ=",
+        "lastModified": 1662260299,
+        "narHash": "sha256-FYJk/Pn+VuSyl5Q3KXwTmOD7hprlv3CZPIRMGGT61IM=",
         "owner": "oxalica",
         "repo": "rust-overlay",
-        "rev": "0c4c1432353e12b325d1472bea99e364871d2cb3",
+        "rev": "fe73170ff8b29c4230c26b85e82c25c73c35481d",
         "type": "github"
       },
       "original": {
