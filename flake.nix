@@ -22,6 +22,9 @@
   in {
     devShell = pkgs.mkShell {
       inherit nativeBuildInputs;
+      CLANG_UNWRAPPED = "${pkgs.llvmPackages_13.clang-unwrapped}/bin/clang";
+      LLD_UNWRAPPED = "${pkgs.llvmPackages_13.lld}/bin/ld.lld";
+      LIBGCC = "${pkgs.libgcc}";
     };
   });
 }

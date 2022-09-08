@@ -9,3 +9,6 @@
 	path = user-trampoline
 	url = git@github.com:mars-research/user-trampoline.git
     branch = MPK_loader
+[submodule "musl"]
+	path = musl
+	url = git://git.musl-libc.org/musl
