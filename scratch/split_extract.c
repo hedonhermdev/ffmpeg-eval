@@ -116,6 +116,7 @@ static void make_split(AVPacket* pkt, AVFrame* frame, int n_frames, uint8_t* vid
 }
 
 int main(int argc, char** argv) {
+    fprintf(stderr, "hello world\n");
     int ret;
     const char* filename;
     char *p;
@@ -128,6 +129,7 @@ int main(int argc, char** argv) {
     AVFrame* frame;
 
     if (argc < 3) {
+        fprintf(stderr, "here\n");
         fprintf(stderr, "usage: %s <filename> <num_splits>", argv[0]);
     }
 
