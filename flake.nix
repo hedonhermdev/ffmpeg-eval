@@ -17,6 +17,7 @@
         clang
         lldb
         ripgrep
+        nasm
         (ffmpeg.override { debugDeveloper = true; })
       ];
   in {
