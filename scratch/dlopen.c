@@ -1,3 +1,5 @@
+#include "libavcodec/codec_par.h"
+#include "libavcodec/packet.h"
 #define _GNU_SOURCE
 #include <dlfcn.h>
 #include <fcntl.h>
@@ -7,7 +9,13 @@
 #include <sys/mman.h>
 #include <sys/stat.h>
 
-#include "../src/split/split.h"
+#include "../src/include.h"
+
+unsigned long long rdtsc() {
+    unsigned hi, lo;
+    __asm__ volatile("rdtsc" : "=a" (lo), "=d" (hi));
+    return ((unsigned long long)lo | (unsigned long long)hi << 32);
+}
 
 int fsize(FILE *fp) {
   struct stat sb;
@@ -51,17 +59,19 @@ int main(int argc, char **argv) {
     return 1;
   }
 
-  chunk_data* chunks = malloc(sizeof(chunk_data) * 128);
-  uint8_t* chunks_buffer = malloc(1024 * 1024 * 1024);
-
   split_args->video_buffer = video_buffer;
   split_args->video_buffer_size = video_buffer_size;
-  split_args->num_chunks = 5;
-  split_args->chunks = chunks;
-  split_args->chunks_buffer = chunks_buffer;
+  split_args->num_chunks = 3;
+  split_args->chunks = malloc(sizeof(chunk_data) * 3);
+  split_args->shared_allocator = &malloc;
 
   void *handle = dlopen("split.so", RTLD_NOW);
   if (handle == NULL) {
+    fprintf(stderr, "dlopen: %s\n", dlerror());
+    return 1;
+  }
+  void *handle2 = dlopen("extract.so", RTLD_NOW);
+  if (handle2 == NULL) {
     fprintf(stderr, "dlopen: %s\n", dlerror());
     return 1;
   }
@@ -72,8 +82,27 @@ int main(int argc, char **argv) {
     return 1;
   }
 
-  ret = _split(split_args);
+  int (*_extract)(chunk_data *) = dlsym(handle2, "extract");
+  if (_extract == NULL) {
+    fprintf(stderr, "dlsym: %s\n", dlerror());
+    return 1;
+  }
+
+  size_t start = rdtsc();
+  int split_ret = _split(split_args);
+
+  for (int i = 0; i < split_args->num_chunks; i++) {
+    ret = _extract(&split_args->chunks[i]);
+    if (ret != 0) {
+        break;
+    }
+  }
+
+  size_t cycles = rdtsc() - start;
+
+  printf("cycles: %lu\n", cycles);
   printf("_split returned: %d\n", ret);
+  printf("extract returned: %d\n", ret);
 
   return 0;
 }

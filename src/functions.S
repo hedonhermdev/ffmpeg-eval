@@ -10,3 +10,4 @@
 
 make_trampoline_MPK_loader_with split, _split, T, A;
 make_trampoline_MPK_loader_with extract, _extract, T, B;
+make_trampoline_MPK_loader_with shared_allocator, _shared_allocator, A, T;

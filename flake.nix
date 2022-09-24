@@ -18,7 +18,8 @@
         lldb
         ripgrep
         nasm
-        (ffmpeg.override { debugDeveloper = true; })
+# ffmpeg version on nixpkgs is old
+        (ffmpeg_5.override { debugDeveloper = true; })
       ];
   in {
     devShell = pkgs.mkShell {
